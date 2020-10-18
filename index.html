@@ -10,29 +10,30 @@
       crossorigin="anonymous"
     />
     <link href="style.css" rel="stylesheet" type="text/css" />
+        <!-- <script src="carrotGame.js"  defer></script> -->
+        <script src="main.js" defer></script>
     <title>Carrot Game</title>
   </head>
   <body>
     <div class="container">
-      <div class="header">
+      <section class="header">
         <button class="play_stop">
           <i class="fas fa-play"></i>
           <!-- <i class="fas fa-stop"></i> -->
         </button>
         <span class="timer">00:10</span>
         <button class="count">0</button>
-      </div>
-      <div class="mainBody">
-        <div class="result hidden">
-          <span class="result__icon">
-            <i class="fas fa-undo-alt"></i>
-          </span>
-          <p>YOU WON</p>
-        </div>
+      </section>
+      <section class="mainBody">
         <!-- <img src="img/carrot.png" /> -->
         <!-- <img src="img/bug.png" /> -->
-      </div>
-    </div>
-    <script src="carrotGame.js"></script>
+      </section>
+    </section>
+    <section class="result hidden">
+      <button class="result__icon">
+        <i class="fas fa-undo-alt"></i>
+      </button>
+      <span>YOU WON</span>
+    </section>
   </body>
 </html>
