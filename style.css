@@ -18,7 +18,7 @@
   justify-content: center;
   flex-direction: column;
 }
-.play_stop {
+.game__button {
   width: 60px;
   height: 60px;
   margin: 5vh auto 0 auto;
@@ -33,7 +33,7 @@
   /* visibility: hidden; */
   font-size: 1.4rem;
 }
-.timer {
+.game__timer {
   /* width: 120px;
         height: 40px; */
   padding: 6px 34px;
@@ -47,8 +47,9 @@
   cursor: pointer;
   outline: none;
   font-size: 1.4rem;
+  visibility: hidden;
 }
-.count {
+.game__score {
   width: 60px;
   height: 60px;
   margin: 10px auto 0 auto;
@@ -59,11 +60,12 @@
   font-size: 2rem;
   cursor: pointer;
   outline: none;
-  /* display: flex;
-        justify-content: center;
-        flex-direction: column; */
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  visibility: hidden;
 }
-.mainBody {
+.game__field {
   text-align: center;
   position: absolute;
   top: 55%;
