@@ -10,6 +10,7 @@ let x2 = filed.width;
 let y2 = filed.height;
 
 const carrot = document.querySelectorAll('.carrot');
+// 개수 추가가 안됨
 const carrotCount = carrot.length;
 
 
@@ -32,6 +33,8 @@ function gameStart() {
         console.log(game);
         game = true;
     }
+
+    // console.log(carrotCount)
 }
 
 // 당근 생성
@@ -45,7 +48,7 @@ function createCarrot() {
 function createBug() {
     let bug = document.createElement('img')
     bug.setAttribute('src', 'img/bug.png')
-    bug.classList.add('carrot')
+    bug.classList.add('bug')
     gameField.appendChild(bug)
 }
 
