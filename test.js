@@ -14,23 +14,23 @@ const carrotCount = carrot.length;
 
 
 // 타이머와 스코어
-// 버튼 on off
+// 게임 상태 수정
+let game = true;
 function gameStart() {
     gameTimer.style.visibility = "visible";
     gameScore.style.visibility = "visible";
 
-    let game = true;
     let icon = document.querySelector('.fas')
     if(game) {
         icon.classList.remove('fa-play')
         icon.classList.add('fa-stop')
-        game = false;
         console.log(game);
+        game = false;
     } else {
         icon.classList.remove('fa-stop')
         icon.classList.add('fa-play')
-        game = true;
         console.log(game);
+        game = true;
     }
 }
 
