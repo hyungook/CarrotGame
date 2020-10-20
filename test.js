@@ -13,7 +13,9 @@ const carrot = document.querySelectorAll('.carrot');
 const carrotCount = carrot.length;
 
 
+
 // 타이머와 스코어
+// 버튼 on off
 function gameStart() {
     gameTimer.style.visibility = "visible";
     gameScore.style.visibility = "visible";
