@@ -13,7 +13,6 @@ const carrot = document.querySelectorAll('.carrot');
 const carrotCount = carrot.length;
 
 
-
 // 타이머와 스코어
 // 버튼 on off
 function gameStart() {
@@ -26,10 +25,12 @@ function gameStart() {
         icon.classList.remove('fa-play')
         icon.classList.add('fa-stop')
         game = false;
+        console.log(game);
     } else {
         icon.classList.remove('fa-stop')
         icon.classList.add('fa-play')
         game = true;
+        console.log(game);
     }
 }
 
