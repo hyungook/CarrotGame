@@ -23,12 +23,11 @@ function gameStart() {
         // console.log(game);
         game = true;
     }
-
     // console.log(carrotCount)
 }
 
 const filed = gameField.getBoundingClientRect();
-carrot__size = 60;
+carrot__size = 80;
 let x1 = 0;
 let y1 = 0;
 let x2 = filed.width - carrot__size;
@@ -103,7 +102,7 @@ function carrotCount() {
 }
 
 gameBtn.addEventListener('click',() => {
-    // gameField.innerHTML = "";
+    gameField.innerHTML = "";
     gameStart();
     for(i=0; i < 5; i++) {
         createCarrot();
