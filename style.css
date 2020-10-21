@@ -118,3 +118,9 @@
 .hidden {
   display: none;
 }
+.carrot,
+.bug {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
