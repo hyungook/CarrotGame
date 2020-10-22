@@ -110,14 +110,30 @@ function gameTimerStart() {
                 if(timer >= 0) {
                     gameTimer.innerHTML = `00:0${timer}`;
                 } else {
-                    // gameTimer.innerHTML = `00:${timer}`;
-                    clearInterval(GameTime);
+                    gameTimer.innerHTML = `00:${timer}`;
                 }
                 timer--;
                 // console.log(aa)
+            } else {
+                clearInterval(GameTime);
             }
         },1000)
 GameTime;
+
+// 수정 01
+// function gameTimerStart() {
+//     gameTimer.innerHTML = `00:10`;
+//     let GameTime = setInterval(function() {
+//             if(!game) {
+//                 if(timer >= 0) {
+//                     gameTimer.innerHTML = `00:0${timer}`;
+//                 } else {
+//                     clearInterval(GameTime);
+//                 }
+//                 timer--;
+//             }
+//         },1000)
+// GameTime;
     
     // if(timer == 0) {
     //     // clearInterval(gameTimer);
