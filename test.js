@@ -24,8 +24,8 @@ function gameStart() {
         game = true;
     }
     // console.log(carrotCount)
+    
 }
-
 const filed = gameField.getBoundingClientRect();
 carrot__size = 80;
 let x1 = 0;
@@ -55,7 +55,7 @@ function createCarrot() {
 
     let carrot = document.createElement('img')
     carrot.setAttribute('src', 'img/carrot.png')
-    carrot.classList.add('carrot')
+    carrot.classList.add('carrot', 'item')
     gameField.appendChild(carrot)
     carrot.style.top = `${y}px`;
     carrot.style.left = `${x}px`;
@@ -83,7 +83,7 @@ function createBug() {
 
     let bug = document.createElement('img')
     bug.setAttribute('src', 'img/bug.png')
-    bug.classList.add('bug')
+    bug.classList.add('bug', 'item')
     gameField.appendChild(bug)
     bug.style.top = `${y}px`;
     bug.style.left = `${x}px`;
@@ -101,9 +101,50 @@ function carrotCount() {
     gameScore.innerHTML = carrotCount;
 }
 
+// 게임 타이머
+let timer = 9;
+function gameTimerStart() {
+    gameTimer.innerHTML = `00:10`;
+    let GameTime = setInterval(function() {
+            if(!game) {
+                if(timer >= 0) {
+                    gameTimer.innerHTML = `00:0${timer}`;
+                } else {
+                    gameTimer.innerHTML = `00:${timer}`;
+                }
+                timer--;
+                // console.log(aa)
+            } else {
+                clearInterval(GameTime);
+            }
+        },1000)
+GameTime;
+    
+    // if(timer == 0) {
+    //     // clearInterval(gameTimer);
+    // } 
+
+
+    // for(timer; timer > 0 ; timer--) {
+    //     console.log(timer)
+    // }
+
+    // if(timer > 0) {
+    //     let aa = setInterval(function() {
+    //         console.log(timer)
+    //     },1000)
+    // } else {
+
+    // }
+    
+}
+
+
+
 gameBtn.addEventListener('click',() => {
     gameField.innerHTML = "";
     gameStart();
+    // console.log(carrotCount)
     for(i=0; i < 5; i++) {
         createCarrot();
     }
@@ -111,7 +152,7 @@ gameBtn.addEventListener('click',() => {
         createBug();
     }
     carrotCount();
-    // console.log(carrotCount)
+    gameTimerStart();
 });
 
 
