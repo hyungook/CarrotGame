@@ -104,7 +104,7 @@ function carrotCount() {
 // 게임 타이머
 let timer = 9;
 function gameTimerStart() {
-    gameTimer.innerHTML = `00:10`;
+    // gameTimer.innerHTML = `00:10`;
     let GameTime = setInterval(function() {
             if(!game) {
                 if(timer >= 0) {
