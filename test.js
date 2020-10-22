@@ -110,12 +110,11 @@ function gameTimerStart() {
                 if(timer >= 0) {
                     gameTimer.innerHTML = `00:0${timer}`;
                 } else {
-                    gameTimer.innerHTML = `00:${timer}`;
+                    // gameTimer.innerHTML = `00:${timer}`;
+                    clearInterval(GameTime);
                 }
                 timer--;
                 // console.log(aa)
-            } else {
-                clearInterval(GameTime);
             }
         },1000)
 GameTime;
