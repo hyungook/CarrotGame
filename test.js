@@ -2,6 +2,8 @@ const gameBtn = document.querySelector('.game__button');
 const gameTimer = document.querySelector('.game__timer');
 const gameScore = document.querySelector('.game__score');
 const gameField = document.querySelector('.game__field');
+const carrot = document.querySelector('.carrot');
+const result = document.querySelector('.result')
 
 // 타이머와 스코어
 // 게임 상태 수정
@@ -16,16 +18,20 @@ function gameStart() {
         icon.classList.remove('fa-play')
         icon.classList.add('fa-stop')
         // console.log(game);
+        result.classList.add('hidden')
+
         game = false;
     } else {
         icon.classList.remove('fa-stop')
         icon.classList.add('fa-play')
         // console.log(game);
+        
+        result.classList.remove('hidden')
         game = true;
     }
     // console.log(carrotCount)
-    
 }
+
 const filed = gameField.getBoundingClientRect();
 carrot__size = 80;
 let x1 = 0;
@@ -59,6 +65,12 @@ function createCarrot() {
     gameField.appendChild(carrot)
     carrot.style.top = `${y}px`;
     carrot.style.left = `${x}px`;
+
+    gameField.addEventListener('click', (e) => {
+        e.target.style.visibility = 'hidden';
+        // e.target.removeChild();
+        // console.log()
+    })
 }
 
 // 벌레 생성
@@ -139,7 +151,6 @@ GameTime;
     //     // clearInterval(gameTimer);
     // } 
 
-
     // for(timer; timer > 0 ; timer--) {
     //     console.log(timer)
     // }
@@ -149,12 +160,17 @@ GameTime;
     //         console.log(timer)
     //     },1000)
     // } else {
-
     // }
-    
 }
 
 
+// click remove
+function remove__handler() {
+    // gameField.addEventListener('click', (e) => {
+    //     // e.target.style.visibility = 'hidden';
+    //     e.target.removeChild()
+    // })
+}
 
 gameBtn.addEventListener('click',() => {
     gameField.innerHTML = "";
@@ -168,6 +184,7 @@ gameBtn.addEventListener('click',() => {
     }
     carrotCount();
     gameTimerStart();
+    remove__handler();
 });
 
 

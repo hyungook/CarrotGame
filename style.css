@@ -80,7 +80,7 @@
 }
 .result {
   width: 40%;
-  height: 40%;
+  height: 20%;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -90,7 +90,7 @@
   color: #fff;
   display: flex;
   justify-content: center;
-
+  text-align: center;
   flex-direction: column;
   /* align-items: space-around; */
 }
@@ -110,9 +110,9 @@
   color: #000;
   font-size: 1.4rem;
 }
-.result p {
+.result span {
   margin-top: 10px;
-  font-size: 3rem;
+  font-size: 2rem;
 }
 
 .hidden {
