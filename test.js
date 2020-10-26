@@ -4,6 +4,7 @@ const gameScore = document.querySelector('.game__score');
 const gameField = document.querySelector('.game__field');
 const carrot = document.querySelector('.carrot');
 const result = document.querySelector('.result');
+const resultResult = document.querySelector('.result__result');
 const resultBtn = document.querySelector('.result__button');
 
 // 타이머와 스코어
@@ -20,7 +21,6 @@ function gameStart() {
         icon.classList.add('fa-stop')
         // console.log(game);
         result.classList.add('hidden')
-
         game = false;
     } else {
         icon.classList.remove('fa-stop')
@@ -33,12 +33,43 @@ function gameStart() {
     // console.log(carrotCount)
 }
 
+// 게임 타이머
+// 게임 정지가 되면 innerHtml = ""
+let timer = 9;
+function gameTimerStart() {
+    // gameTimer.innerHTML = `00:10`;
+    timer = 9;
+    let GameTime = setInterval(function() {
+            if(!game) {
+                if(timer >= 0) {
+                    gameTimer.innerHTML = `00:0${timer}`;
+                } else {
+                    clearInterval(GameTime);
+                        console.log('타이머 0이다')
+                        // resultResult.innerHTML="YOU WON";
+                        result.classList.remove('hidden')
+                        game = true;
+                }
+                timer--;
+                // console.log(aa)
+            } else {
+                // resultResult.innerHTML="REPLAY?";
+                gameField.innerHTML = "";
+                clearInterval(GameTime);
+            }
+        },1000)
+
+GameTime;
+}
+
+// 랜덤 포지션을 위한 코드
 const filed = gameField.getBoundingClientRect();
 carrot__size = 80;
 let x1 = 0;
 let y1 = 0;
 let x2 = filed.width - carrot__size;
 let y2 = filed.height - carrot__size;
+
 // 당근 생성
 function createCarrot() {
 
@@ -51,10 +82,21 @@ function createCarrot() {
     gameField.appendChild(carrot)
     carrot.style.top = `${y}px`;
     carrot.style.left = `${x}px`;
+}
 
-    // gameField.addEventListener('click', (e) => {
-        // e.target.style.visibility = 'hidden';
-    // })
+
+// 벌레 생성
+function createBug() {
+    
+    let x = getRandom(x1,x2);
+    let y = getRandom(y1,y2);
+
+    let bug = document.createElement('img')
+    bug.setAttribute('src', 'img/bug.png')
+    bug.classList.add('bug', 'item')
+    gameField.appendChild(bug)
+    bug.style.top = `${y}px`;
+    bug.style.left = `${x}px`;
 }
 
 //당근 삭제!
@@ -73,30 +115,12 @@ function remove__carrot(e) {
         console.log('remove - ok')
         elem.remove(this);
     }
-    // while (!elem.classList.contains("item")) {
-    //     // elem = elem.parentNode;
-    //     if (elem == gameField) {
-    //     //   elem = null;
-    //       return;
-    //     }
-    //   }
-
+    carrotCount();
+    bugCount();
 }
+
 gameField.addEventListener('click', remove__carrot);
 
-// 벌레 생성
-function createBug() {
-    
-    let x = getRandom(x1,x2);
-    let y = getRandom(y1,y2);
-
-    let bug = document.createElement('img')
-    bug.setAttribute('src', 'img/bug.png')
-    bug.classList.add('bug', 'item')
-    gameField.appendChild(bug)
-    bug.style.top = `${y}px`;
-    bug.style.left = `${x}px`;
-}
 // 랜덤
 function getRandom(min, max) {
     return Math.floor((Math.random() * (max - min + 1)) + min);
@@ -108,51 +132,35 @@ function carrotCount() {
     // 개수 추가가 안됨
     const carrotCount = carrot.length;
     gameScore.innerHTML = carrotCount;
+
+    if(carrotCount == 0) {
+        console.log('0이다')
+        resultResult.innerHTML="YOU WON";
+        result.classList.remove('hidden')
+        game = true;
+    }else {
+        resultResult.innerHTML="REPLAY?";
+    }
 }
 
-// 게임 타이머
-let timer = 9;
-function gameTimerStart() {
-    // gameTimer.innerHTML = `00:10`;
-    let GameTime = setInterval(function() {
-            if(!game) {
-                if(timer >= 0) {
-                    gameTimer.innerHTML = `00:0${timer}`;
-                } else {
-                    clearInterval(GameTime);
-                }
-                timer--;
-                // console.log(aa)
-            } else {
-                clearInterval(GameTime);
-            }
-        },1000)
-GameTime;
+// 벌레 개수
+// 벌레 클릭 시 게임 종료
+function bugCount() {
+    const bug = document.querySelectorAll('.bug');
+    const bugCount = bug.length;
 
-// 수정 01
-// function gameTimerStart() {
-//     gameTimer.innerHTML = `00:10`;
-//     let GameTime = setInterval(function() {
-//             if(!game) {
-//                 if(timer >= 0) {
-//                     gameTimer.innerHTML = `00:0${timer}`;
-//                 } else {
-//                     clearInterval(GameTime);
-//                 }
-//                 timer--;
-//             }
-//         },1000)
-// GameTime;
+    if(bugCount < 5) {
+        console.log('bug bug')
+        resultResult.innerHTML="REPLAY?";
+        result.classList.remove('hidden')
+        game = true;
+    } else {
+        resultResult.innerHTML="YOU WON";
+        return;
+    }
+
+
 }
-
-
-// game reset
-// function reset__handler() {
-//         resultBtn.addEventListener('click',() => {
-//             gameStart();
-//         });
-// }
-
 
 gameBtn.addEventListener('click',() => {
     gameField.innerHTML = "";
@@ -169,4 +177,17 @@ gameBtn.addEventListener('click',() => {
 });
 
 
-
+resultBtn.addEventListener('click',() => {
+    gameField.innerHTML = "";
+    gameStart();
+    // console.log(carrotCount)
+    for(i=0; i < 5; i++) {
+        createCarrot();
+    }
+    for(i=0; i < 5; i++) {
+        createBug();
+    }
+    carrotCount();
+    bugCount();
+    gameTimerStart();
+});

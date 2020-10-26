@@ -94,7 +94,7 @@
   flex-direction: column;
   /* align-items: space-around; */
 }
-.result__icon {
+.result__button {
   /* position: absolute; */
   margin: 0 auto;
   width: 60px;
