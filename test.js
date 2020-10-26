@@ -3,7 +3,8 @@ const gameTimer = document.querySelector('.game__timer');
 const gameScore = document.querySelector('.game__score');
 const gameField = document.querySelector('.game__field');
 const carrot = document.querySelector('.carrot');
-const result = document.querySelector('.result')
+const result = document.querySelector('.result');
+const resultBtn = document.querySelector('.result__button');
 
 // 타이머와 스코어
 // 게임 상태 수정
@@ -38,22 +39,7 @@ let x1 = 0;
 let y1 = 0;
 let x2 = filed.width - carrot__size;
 let y2 = filed.height - carrot__size;
-
 // 당근 생성
-// function createCarrot() {
-
-//     let x = getRandom(x1,x2);
-//     let y = getRandom(y1,y2);
-
-//     for(i=0; i < 5; i++) {
-//         let carrot = document.createElement('img')
-//         carrot.setAttribute('src', 'img/carrot.png')
-//         carrot.classList.add('carrot')
-//         gameField.appendChild(carrot)
-//         carrot.style.top = `${y}px`;
-//         carrot.style.left = `${x}px`;
-//     }
-// }
 function createCarrot() {
 
     let x = getRandom(x1,x2);
@@ -66,28 +52,39 @@ function createCarrot() {
     carrot.style.top = `${y}px`;
     carrot.style.left = `${x}px`;
 
-    gameField.addEventListener('click', (e) => {
-        e.target.style.visibility = 'hidden';
-        // e.target.removeChild();
-        // console.log()
-    })
+    // gameField.addEventListener('click', (e) => {
+        // e.target.style.visibility = 'hidden';
+    // })
 }
 
-// 벌레 생성
-// function createBug() {
-    
-//     let x = getRandom(x1,x2);
-//     let y = getRandom(y1,y2);
+//당근 삭제!
+let removeCarrot;
+function remove__carrot(e) {
+    let elem = e.target;
+    console.log(elem);
+    // elem.remove(this);
 
-//     for(i=0; i < 5; i++) {
-//         let bug = document.createElement('img')
-//         bug.setAttribute('src', 'img/bug.png')
-//         bug.classList.add('bug')
-//         gameField.appendChild(bug)
-//         bug.style.top = `${y}px`;
-//         bug.style.left = `${x}px`;
-//     }
-// }
+    if(e.target == gameField) {
+        // elem = null;
+        console.log('remove - no')
+        return;
+    } else {
+        // elem = e.target;
+        console.log('remove - ok')
+        elem.remove(this);
+    }
+    // while (!elem.classList.contains("item")) {
+    //     // elem = elem.parentNode;
+    //     if (elem == gameField) {
+    //     //   elem = null;
+    //       return;
+    //     }
+    //   }
+
+}
+gameField.addEventListener('click', remove__carrot);
+
+// 벌레 생성
 function createBug() {
     
     let x = getRandom(x1,x2);
@@ -146,31 +143,16 @@ GameTime;
 //             }
 //         },1000)
 // GameTime;
-    
-    // if(timer == 0) {
-    //     // clearInterval(gameTimer);
-    // } 
-
-    // for(timer; timer > 0 ; timer--) {
-    //     console.log(timer)
-    // }
-
-    // if(timer > 0) {
-    //     let aa = setInterval(function() {
-    //         console.log(timer)
-    //     },1000)
-    // } else {
-    // }
 }
 
 
-// click remove
-function remove__handler() {
-    // gameField.addEventListener('click', (e) => {
-    //     // e.target.style.visibility = 'hidden';
-    //     e.target.removeChild()
-    // })
-}
+// game reset
+// function reset__handler() {
+//         resultBtn.addEventListener('click',() => {
+//             gameStart();
+//         });
+// }
+
 
 gameBtn.addEventListener('click',() => {
     gameField.innerHTML = "";
@@ -184,7 +166,6 @@ gameBtn.addEventListener('click',() => {
     }
     carrotCount();
     gameTimerStart();
-    remove__handler();
 });
 
 
