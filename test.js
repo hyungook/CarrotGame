@@ -119,7 +119,6 @@ function remove__carrot(e) {
     let elem = e.target;
     console.log(elem);
     // elem.remove(this);
-
     if(e.target == gameField) {
         // elem = null;
         console.log('remove - no')
@@ -191,7 +190,6 @@ function carrotCount() {
     }
 }
 
-
 gameBtn.addEventListener('click',() => {
     gameField.innerHTML = "";
     gameStart();
@@ -205,7 +203,6 @@ gameBtn.addEventListener('click',() => {
     carrotCount();
     gameTimerStart();
 });
-
 
 resultBtn.addEventListener('click',() => {
     gameField.innerHTML = "";
