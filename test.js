@@ -38,6 +38,7 @@ function gameStart() {
 let timer = 9;
 function gameTimerStart() {
     // gameTimer.innerHTML = `00:10`;
+    gameBtn.style.visibility="visible";
     timer = 9;
     let GameTime = setInterval(function() {
             if(!game) {
@@ -46,7 +47,7 @@ function gameTimerStart() {
                 } else {
                     clearInterval(GameTime);
                         console.log('타이머 0이다')
-                        // resultResult.innerHTML="YOU WON";
+                        resultResult.innerHTML="YOU LOST 😰";
                         result.classList.remove('hidden')
                         game = true;
                 }
@@ -54,6 +55,7 @@ function gameTimerStart() {
                 // console.log(aa)
             } else {
                 // resultResult.innerHTML="REPLAY?";
+                gameBtn.style.visibility="hidden";
                 gameField.innerHTML = "";
                 clearInterval(GameTime);
             }
@@ -83,7 +85,6 @@ function createCarrot() {
     carrot.style.top = `${y}px`;
     carrot.style.left = `${x}px`;
 }
-
 
 // 벌레 생성
 function createBug() {
@@ -135,14 +136,13 @@ function carrotCount() {
 
     if(carrotCount == 0) {
         console.log('0이다')
-        resultResult.innerHTML="YOU WON";
+        resultResult.innerHTML="YOU WON 🎉";
         result.classList.remove('hidden')
         game = true;
     }else {
         resultResult.innerHTML="REPLAY?";
     }
 }
-
 // 벌레 개수
 // 벌레 클릭 시 게임 종료
 function bugCount() {
@@ -151,15 +151,15 @@ function bugCount() {
 
     if(bugCount < 5) {
         console.log('bug bug')
-        resultResult.innerHTML="REPLAY?";
+        // resultResult.innerHTML="REPLAY?";
+        resultResult.innerHTML="YOU LOST 😰";
         result.classList.remove('hidden')
+        gameBtn.style.visibility="hidden";
         game = true;
     } else {
         resultResult.innerHTML="YOU WON";
         return;
     }
-
-
 }
 
 gameBtn.addEventListener('click',() => {
