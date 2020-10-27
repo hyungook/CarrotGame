@@ -141,7 +141,7 @@ function bugCount() {
     const bug = document.querySelectorAll('.bug');
     const bugCount = bug.length;
 
-    if(bugCount < 5) {
+    if(bugCount < 10) {
         console.log('bug bug')
         // resultResult.innerHTML="REPLAY?";
         playSound(alertSound);
