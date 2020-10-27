@@ -7,10 +7,20 @@ const result = document.querySelector('.result');
 const resultResult = document.querySelector('.result__result');
 const resultBtn = document.querySelector('.result__button');
 
+
+// Sound (엘린님 강의)
+const carrotSound = new Audio('./sound/carrot_pull.mp3');
+const alertSound = new Audio('./sound/alert.wav');
+const bugSound = new Audio('./sound/bug_pull.mp3');
+const bgSound = new Audio('./sound/bg.mp3');
+const gameWinSound = new Audio('./sound/game_win.mp3');
+
+
 // 타이머와 스코어
 // 게임 상태 수정
 let game = true;
 function gameStart() {
+    playSound(bgSound);
     gameTimer.style.visibility = "visible";
     gameScore.style.visibility = "visible";
 
@@ -25,6 +35,8 @@ function gameStart() {
     } else {
         icon.classList.remove('fa-stop')
         icon.classList.add('fa-play')
+        stopSound(bgSound);
+        playSound(alertSound);
         // console.log(game);
         
         result.classList.remove('hidden')
@@ -47,6 +59,7 @@ function gameTimerStart() {
                 } else {
                     clearInterval(GameTime);
                         console.log('타이머 0이다')
+                        playSound(alertSound);
                         resultResult.innerHTML="YOU LOST 😰";
                         result.classList.remove('hidden')
                         game = true;
@@ -113,6 +126,7 @@ function remove__carrot(e) {
         return;
     } else {
         // elem = e.target;
+        playSound(carrotSound);
         console.log('remove - ok')
         elem.remove(this);
     }
@@ -121,6 +135,37 @@ function remove__carrot(e) {
 }
 
 gameField.addEventListener('click', remove__carrot);
+
+// 벌레 개수
+// 벌레 클릭 시 게임 종료
+function bugCount() {
+    const bug = document.querySelectorAll('.bug');
+    const bugCount = bug.length;
+
+    if(bugCount < 5) {
+        console.log('bug bug')
+        // resultResult.innerHTML="REPLAY?";
+        playSound(alertSound);
+        playSound(bugSound);
+        resultResult.innerHTML="YOU LOST 😰";
+        result.classList.remove('hidden')
+        gameBtn.style.visibility="hidden";
+        game = true;
+    } else {
+        resultResult.innerHTML="YOU WON";
+        return;
+    }
+}
+
+// 소리 재생 함수
+function playSound(sound) {
+    sound.currentTime = 0;
+    sound.play();
+}
+// 소리 정지 함수
+function stopSound(sound) {
+    sound.pause();
+}
 
 // 랜덤
 function getRandom(min, max) {
@@ -136,6 +181,8 @@ function carrotCount() {
 
     if(carrotCount == 0) {
         console.log('0이다')
+        playSound(gameWinSound);
+        stopSound(bgSound);
         resultResult.innerHTML="YOU WON 🎉";
         result.classList.remove('hidden')
         game = true;
@@ -143,24 +190,7 @@ function carrotCount() {
         resultResult.innerHTML="REPLAY?";
     }
 }
-// 벌레 개수
-// 벌레 클릭 시 게임 종료
-function bugCount() {
-    const bug = document.querySelectorAll('.bug');
-    const bugCount = bug.length;
 
-    if(bugCount < 5) {
-        console.log('bug bug')
-        // resultResult.innerHTML="REPLAY?";
-        resultResult.innerHTML="YOU LOST 😰";
-        result.classList.remove('hidden')
-        gameBtn.style.visibility="hidden";
-        game = true;
-    } else {
-        resultResult.innerHTML="YOU WON";
-        return;
-    }
-}
 
 gameBtn.addEventListener('click',() => {
     gameField.innerHTML = "";
