@@ -58,7 +58,7 @@
   border-radius: 50%;
   color: white;
   font-size: 2rem;
-  cursor: pointer;
+  /* cursor: pointer; */
   outline: none;
   display: flex;
   justify-content: center;
@@ -127,4 +127,9 @@
   top: 0;
   left: 0;
   cursor: pointer;
+  transition: all 100ms ease;
+}
+.carrot:hover,
+.bug:hover {
+  transform: scale(1.1);
 }

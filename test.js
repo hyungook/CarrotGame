@@ -194,10 +194,10 @@ gameBtn.addEventListener('click',() => {
     gameField.innerHTML = "";
     gameStart();
     // console.log(carrotCount)
-    for(i=0; i < 5; i++) {
+    for(i=0; i < 10; i++) {
         createCarrot();
     }
-    for(i=0; i < 5; i++) {
+    for(i=0; i < 10; i++) {
         createBug();
     }
     carrotCount();
@@ -208,10 +208,10 @@ resultBtn.addEventListener('click',() => {
     gameField.innerHTML = "";
     gameStart();
     // console.log(carrotCount)
-    for(i=0; i < 5; i++) {
+    for(i=0; i < 10; i++) {
         createCarrot();
     }
-    for(i=0; i < 5; i++) {
+    for(i=0; i < 10; i++) {
         createBug();
     }
     carrotCount();
